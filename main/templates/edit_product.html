@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex flex-col min-h-screen bg-gray-100">
+  <div class="container mx-auto px-4 py-8 mt-16 max-w-xl">
+    <h1 class="text-3xl font-bold text-center mb-8 text-black">Edit Product</h1>
+    
+    <div class="bg-white shadow-md rounded-lg p-6 form-style">
+      <form method="POST" enctype="multipart/form-data" class="space-y-6">
+        {% csrf_token %}
+        
+        <!-- Tampilkan pesan error global -->
+        {% if form.non_field_errors %}
+          <div class="text-red-600 font-semibold text-center">
+              <p>{{ form.non_field_errors.0 }}</p>
+          </div>
+        {% endif %}
+
+        <!-- Tampilkan form fields dan error masing-masing field -->
+        {% for field in form %}
+          <div class="flex flex-col">
+            <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-700">
+              {{ field.label }}
+            </label>
+            <div class="w-full">
+              {{ field }}
+            </div>
+            {% if field.help_text %}
+              <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p>
+            {% endif %}
+            {% for error in field.errors %}
+              <p class="mt-1 text-sm text-red-600">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        
+        <!-- Tombol submit untuk membuat product -->
+        <div class="flex justify-center mt-6">
+          <button type="submit" class="bg-[#439399] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#38848a] transition duration-300 ease-in-out w-full">
+            Edit Product
+          </button>
+        </div>
+      </form>
+
+      <!-- Tombol kembali ke halaman sebelumnya -->
+      <div class="flex justify-center mt-4">
+        <button onclick="history.back()" class="bg-gray-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out w-full">
+          Back to Previous Page
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Audrey Food</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+</head>
+<body>
+    <header class="header">
+        <h2>Warung Audrey Food</h2>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Cari menu...">
+            </div>
+            
+                <div class="dropdown-content" id="menu-dropdown">
+                    <a href="#">Gorengan Bu Ade</a>
+                    <a href="#">PUSAT ES</a>
+                    <a href="#">Fotocopy</a>
+                    <a href="#">Warung Audrey Food</a>
+
+                </div>
+            </div>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart" id="cart-btn" onclick="openCart()"></i>
+                <span class="cart-badge" id="cart-count">0</span> <!-- Badge hanya menampilkan jumlah -->
+            </div>
+            
+            </div>            
+        </div>
+    </header>
+
+    <section id="store-details">
+        <img src="images/Audrey Food.png" alt="Warung Audrey Food">
+        <p>Aneka Jajanan Murah Meriah</p>
+        <p><strong>Penilaian: 4.8</strong> | 999+ ulasan</p>
+    </section>
+
+    <section id="menu-section">
+        <h2>Menu Jajanan</h2>
+        <div class="order-items">
+            <div class="order-card">
+                <img src="images/Basreng cobek.png" alt="Basreng Cobek">
+                <div class="card-content">
+                    <h3>Basreng Cobek</h3>
+                    <p>Rp5.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Basreng Cobek', 5000)">-</button>
+                        <span class="quantity" id="quantity-Basreng Cobek">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Basreng Cobek', 5000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Basreng Cobek', 5000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Takoyaki.png" alt="Takoyaki">
+                <div class="card-content">
+                    <h3>Takoyaki</h3>
+                    <p>Rp5.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Takoyaki', 5000)">-</button>
+                        <span class="quantity" id="quantity-Takoyaki">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Takoyaki', 5000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Takoyaki', 5000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Sosis Bakar.png" alt="Sosis Bakar">
+                <div class="card-content">
+                    <h3>Sosis Bakar</h3>
+                    <p>Rp5.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Sosis Bakar', 5000)">-</button>
+                        <span class="quantity" id="quantity-Sosis Bakar">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Sosis Bakar', 5000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Sosis Bakar', 5000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Kentang Goreng.png" alt="Kentang Goreng">
+                <div class="card-content">
+                    <h3>Kentang Goreng</h3>
+                    <p>Rp6.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Kentang Goreng', 6000)">-</button>
+                        <span class="quantity" id="quantity-Kentang Goreng">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Kentang Goreng', 6000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Kentang Goreng', 6000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Mie Goreng.png" alt="Mie Goreng">
+                <div class="card-content">
+                    <h3>Mie Goreng</h3>
+                    <p>Rp5.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Mie Goreng', 5000)">-</button>
+                        <span class="quantity" id="quantity-Mie Goreng">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Mie Goreng', 5000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Mie Goreng', 5000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Pisang keju.png" alt="Pisang Keju">
+                <div class="card-content">
+                    <h3>Pisang Keju</h3>
+                    <p>Rp6.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Pisang Keju', 6000)">-</button>
+                        <span class="quantity" id="quantity-Pisang Keju">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Pisang Keju', 6000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Pisang Keju', 6000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Ketan Susu.png" alt="Ketan Susu">
+                <div class="card-content">
+                    <h3>Ketan Susu Large</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Ketan Susu', 10000)">-</button>
+                        <span class="quantity" id="quantity-Ketan Susu">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Ketan Susu', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Ketan Susu', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- Modal Konfirmasi Pesanan -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Keranjang Belanja</h2>
+            <div id="cart-items">
+                <!-- Items akan diisi secara dinamis -->
+            </div>
+            <div class="total-section">
+                <p><strong>Total Pembayaran: <span id="total-price">Rp0</span></strong></p>
+            </div>
+            <a href="Struk.html"><button class="order-btn" id="place-order-btn">Buat Pesanan</button></a>
+            
+        </div>
+    </div>
+
+    <!-- Tambahan untuk memisahkan file JS -->
+    <script src="script.js"></script>
+</body>
+</html>

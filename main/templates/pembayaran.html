@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Safa{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-6">Checkout</h1>
+
+        {% if cart_items %}
+            <div class="cart-items mb-6">
+                <h2 class="text-xl font-semibold mb-4">Your Cart</h2>
+                {% for item in cart_items %}
+                    <div class="cart-item flex justify-between mb-4">
+                        <div>
+                            <p><strong>Product:</strong> {{ item.product.name }}</p>
+                            <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                            <p><strong>Total:</strong> Rp{{ item.total_price }}</p>
+                        </div>
+                        <form action="{% url 'main:remove_from_cart' item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Remove</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="total-price mb-6">
+                <p class="text-xl font-semibold">Total Price: Rp{{ total_price }}</p>
+            </div>
+
+            <div class="payment-method mb-6">
+                <h2 class="text-xl font-semibold mb-4">Payment Method</h2>
+                <p class="text-lg">Choose a payment method:</p>
+                <form action="{% url 'main:checkout' %}" method="post">
+                    {% csrf_token %}
+                    <label for="payment-method-1" class="block mb-2">
+                        <input type="radio" name="payment_method" value="QRIS" id="payment-method-1" checked>
+                        QRIS (Scan using your bank's app)
+                    </label>
+                    <label for="payment-method-2" class="block mb-2">
+                        <input type="radio" name="payment_method" value="bank_transfer" id="payment-method-2">
+                        Bank Transfer
+                    </label>
+                    <label for="payment-method-3" class="block mb-2">
+                        <input type="radio" name="payment_method" value="cash_on_delivery" id="payment-method-3">
+                        Cash on Delivery (COD)
+                    </label>
+                </form>
+            </div>
+
+            <div class="checkout-button">
+                <form action="{% url 'main:checkout' %}" method="post">
+                    {% csrf_token %}
+                    <button onclick="confirmOrder()">Bayar Sekarang</button>
+                </form>
+            </div>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
+{% endblock %}

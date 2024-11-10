@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Struk - Safa{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-6">Struk</h1>
+
+        {% if cart_items %}
+            <div class="cart-items mb-6">
+                {% for item in cart_items %}
+                    <div class="cart-item flex justify-between mb-4">
+                        <div>
+                            <p><strong>Product:</strong> {{ item.product.name }}</p>
+                            <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                            <p><strong>Total:</strong> Rp{{ item.total_price }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="total-price mb-6">
+                <p class="text-xl font-semibold">Total Price: Rp{{ total_price }}</p>
+            </div>
+
+            <button onclick="confirmOrder()">Chat Admin</button>
+
+            </div>
+        {% else %}
+            <p>Struk anda kosong</p>
+        {% endif %}
+    </div>
+    <script>
+                function confirmOrder() {
+                    alert('Pesanan berhasil! Anda akan diarahkan ke WhatsApp untuk konfirmasi.');
+                    window.location.href = 'https://wa.me/6281234567890?text=Pesanan%20sudah%20dibayar.';
+                }
+            </script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+    <!-- Menggunakan margin-top untuk menghindari navbar -->
+    <main class="container mx-auto p-6 mt-24">
+        <h1>Your Cart</h1>
+
+        {% if cart_items %}
+            <div class="cart-items">
+                {% for item in cart_items %}
+                    <div class="cart-item mb-4 p-4 bg-white shadow rounded">
+                        <p>Product: {{ item.product.name }}</p>
+                        <p>Quantity: {{ item.quantity }}</p>
+                        <p>Total: Rp{{ item.total_price }}</p>
+
+                        <!-- Tombol Hapus -->
+                        <form action="{% url 'main:remove_from_cart' item.id %}" method="post" class="mt-4">
+                            {% csrf_token %}
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Remove</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="total-price mt-4">
+                <p><strong>Total Price: Rp{{ total_price }}</strong></p>
+            </div>
+
+            <div class="checkout-button mt-4">
+                <a href="{% url 'main:checkout' %}" class="bg-blue-500 text-white px-4 py-2 rounded">Proceed to Checkout</a>
+            </div>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </main>
+{% endblock %}

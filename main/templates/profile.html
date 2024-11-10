@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>WhyBandung?</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+{% endblock meta %}
+{% block content %}
+
+<div class="flex flex-col min-h-screen bg-gray-100">
+    <div class="container mx-auto px-4 py-4 mt-16">
+        <div class="container-fluid">
+            <div class="bg-gray-200 relative rounded flex flex-col items-center justify-center text-center py-6">
+                <img src="https://www.svgrepo.com/show/355933/user-circle.svg" class="w-32 h-32 rounded-full mt-12 bg-gray-200" />
+                <div class="py-4">
+                    <h4 class="text-gray-800 text-base font-extrabold">{{ user.username }}</h4>
+                    <p class="text-gray-800 text-xs mt-1">Food Enthusiast</p>
+                    <div class="flex justify-center my-6">
+                        <button type="button" id="openModalBtn" class="bg-blue-web text-white font-bold py-2 px-4 rounded-lg">
+                            Add Journal Entry
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+        <div class="flex flex-col items-center justify-center min-h-[24rem] p-6 w-full">
+            <div id="exist_entry_cards"></div>
+            <div id="journal_entry_cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
+            </div>
+            <!-- Modal Structure -->
+            <div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+                <div id="crudModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 border-b rounded-t">
+                        <h3 class="text-xl font-semibold text-gray-900">Add New Entry</h3>
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="px-6 py-4 space-y-6 form-style">
+                        <form id="journalEntryForm">
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-700">Title</label>
+                                <input type="text" id="title" name="title" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="store" class="block text-sm font-medium text-gray-700">Store</label>
+                                <select id="store" name="store" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+                                    <option value="">Select a Store</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                                <textarea id="description" name="description" rows="3" class="mt-1 block w-full h-52 resize-none border border-gray-300 rounded-md p-2" placeholder="Tell us about your experience..." required></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="ratings" class="block text-sm font-medium text-gray-700">Ratings</label>
+                                <input type="number" id="ratings" name="ratings" min="0" max="5" class="mt-1 block w-full border border-gray-300 rounded-md p-2 " required>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+                        <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelButton">Cancel</button>
+                        <button type="submit" id="submitJournalEntry" form="journalEntryForm" class="bg-blue-web hover:bg-blue-web text-white font-bold py-2 px-4 rounded-lg">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Fetch and display existing journal entries on page load
+        refreshJournalEntries();  // Add this line to fetch existing entries on page load
+        
+        // Button to open modal
+        document.getElementById("openModalBtn").addEventListener("click", function() {
+            populateStoreDropdown();  // Populate dropdown when modal opens
+            showModal();  // Show modal
+        });
+
+        // Modal close buttons
+        document.getElementById("cancelButton").addEventListener("click", hideModal);
+        document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+
+        // Form submission handler
+        document.getElementById("journalEntryForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+            addJournalEntry();   // Custom function to handle journal entry submission
+        });
+    });
+
+
+    // Function to populate the store dropdown via AJAX
+    function populateStoreDropdown() {
+        fetch("{% url 'dashboard:get_stores' %}")
+            .then(response => response.json())
+            .then(stores => {
+                const storeSelect = document.getElementById("store");
+                storeSelect.innerHTML = '<option value="">Select a Store</option>'; // Clear existing options
+
+                stores.forEach(store => {
+                    const option = document.createElement("option");
+                    option.value = store.name;
+                    option.textContent = store.name;  // Add store names as options
+                    storeSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching stores:', error));  // Error handling
+    }
+
+    // Function to show the modal
+    function showModal() {
+        const modal = document.getElementById('crudModal');
+        const modalContent = document.getElementById('crudModalContent');
+
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modalContent.classList.remove('opacity-0', 'scale-95');
+            modalContent.classList.add('opacity-100', 'scale-100');
+        }, 50); // Smooth transition
+    }
+
+    // Function to hide the modal
+    function hideModal() {
+        const modal = document.getElementById('crudModal');
+        const modalContent = document.getElementById('crudModalContent');
+
+        modalContent.classList.remove('opacity-100', 'scale-100');
+        modalContent.classList.add('opacity-0', 'scale-95');
+
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 150); // Smooth transition
+    }
+
+    // Function to handle journal entry submission via AJAX
+    function addJournalEntry() {
+        fetch("{% url 'dashboard:create_journal_entry_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#journalEntryForm')),  // Serialize form data
+        })
+        .then(response => {
+            refreshJournalEntries();  // Refresh journal entries after successful form submission
+        })
+        .catch(error => console.error('Error submitting journal entry:', error)); // Error handling
+
+        document.getElementById("journalEntryForm").reset();  // Reset form
+        hideModal();  // Hide modal after submission
+    }
+
+    async function getJournalEntries() {
+        return fetch("{% url 'dashboard:show_json' %}")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to fetch journal entries.");
+                }
+                return response.json();
+            })
+            .catch(error => console.error('Error fetching journal entries:', error));
+    }
+
+    // Function to refresh journal entries
+    async function refreshJournalEntries() {
+        const journalEntryCards = document.getElementById("journal_entry_cards");
+        const missingEntryCards = document.getElementById("exist_entry_cards");
+        missingEntryCards.innerHTML = ""; // Clear current entries
+        journalEntryCards.innerHTML = ""; // Clear current entries
+
+        try {
+            const journalEntries = await getJournalEntries(); // Fetch journal entries via AJAX
+            console.log(journalEntries); // Add this line to see the data
+
+            if (journalEntries.length === 0) {
+                missingEntryCards.innerHTML = `
+                    <div class="flex flex-col items-center justify-center min-h-[24rem] w-full text-center">
+                        <img src="https://www.svgrepo.com/show/525569/upload-minimalistic.svg" alt="No Journal Entry Added" class="w-32 h-32 mb-4" />
+                        <p class="text-gray-600 mt-4">Please, add at least one Entry.</p>
+                    </div>
+                `;
+            } else {
+                journalEntries.forEach((item) => {
+                    const user = DOMPurify.sanitize(item.fields.user);
+                    const title = DOMPurify.sanitize(item.fields.title);
+                    const store = DOMPurify.sanitize(item.fields.store);
+                    const description = DOMPurify.sanitize(item.fields.description);
+                    const ratings = DOMPurify.sanitize(item.fields.ratings);
+                    const time = DOMPurify.sanitize(item.fields.time);
+
+                    journalEntryCards.innerHTML += 
+                        `
+                        <div>
+                            <div class="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300">
+                                <div class="p-6">
+                                    <span class="text-sm block text-gray-400 mb-2">Created ${time}</span>
+                                    <h3 class="text-xl font-bold text-gray-800">${title}</h3>
+                                    <span class="text-xs text-white bg-blue-500 rounded-full px-3 py-1">${ratings} Stars</span>
+                                    <hr class="my-4" />
+                                    <p class="text-gray-400 text-sm">${description}</p>
+                                </div>
+                                <div class="flex space-x-2 justify-center my-4">
+                                    <a href="/edit-journal/${item.pk}" class=" bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                    Edit
+                                    </a>
+                                    <a href="/delete-journal/${item.pk}" class=" bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                    Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        } catch (error) {
+            console.error('Error refreshing journal entries:', error);
+        }
+    }
+</script>
+
+{% endblock content %}

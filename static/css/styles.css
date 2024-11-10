@@ -1,0 +1,519 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(248, 186, 101, 0.9);
+    background-size: cover;
+    color: #333;
+}
+
+.header {
+    background-color: rgba(244, 176, 79, 0.9); /* semi-transparent background */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.logo-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; /* Membuat elemen memenuhi ruang */
+}
+
+.logo img {
+    height: 50px;
+}
+
+.menu-icon button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto; /* Menu icon tetap di sebelah kanan logo */
+}
+
+/* Bagian search-bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto; /* Pindahkan search bar ke kanan */
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px 10px 40px; /* Tambahkan ruang untuk ikon */
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    outline: none;
+}
+
+.search-bar .fa-search {
+    position: absolute;
+    margin-left: 10px; /* Posisi ikon di dalam input */
+    color: #888;
+    font-size: 18px;
+}
+
+/* Dropdown menu styles */
+.dropdown-content {
+    display: none; /* Tersembunyi secara default */
+    position: absolute;
+    background-color: #f4b04f; /* Warna latar belakang */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+    right: 0; /* Agar menu muncul di bawah icon bar */
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f08e33; /* Warna saat hover */
+}
+
+/* Bagian menu-icon */
+.menu-icon button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.menu-icon .fa-bars {
+    font-size: 24px;
+}
+
+.category {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #fff;
+}
+
+.category-btn {
+    background-color: #f4b04f;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.category-btn:hover {
+    background-color: #f08e33;
+}
+
+/* Gaya judul-judul H2 */
+.popular-orders h2,
+#home-section h2,
+#makanan-section h2,
+#minuman-section h2,
+#fotocopy-section h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #f08e33; /* Latar belakang */
+    display: inline-block; /* Ukuran latar belakang sesuai dengan teks */
+    padding: 5px 15px; /* Tambahkan padding di sekitar teks */
+    border-radius: 10px; /* Membuat sudut latar belakang melengkung */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan halus */
+}
+
+.order-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Card Styles */
+.order-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    min-width: 180px;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.order-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-content {
+    padding: 10px 0;
+}
+
+.card-content h3 {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 14px;
+    color: #777;
+}
+
+.time {
+    font-weight: bold;
+    color: #f4b04f;
+}
+
+.order-btn {
+    background-color: #f4b04f;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.order-btn:hover {
+    background-color: #f08e33;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .order-items {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .order-card {
+        width: 100%;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+}
+
+/* Styles tambahan dari Sign In */
+
+.signin-section { /* Membuat wrapper untuk sign-in */
+    display: flex;
+    justify-content: center; /* Memastikan kontainer sign-in terletak di tengah */
+    align-items: center; /* Vertically center the items */
+    height: calc(100vh - 80px); /* Make sure to leave space for the header/footer if necessary */
+    margin: 40px 0; /* Memberikan ruang atas dan bawah */
+}
+
+.signin-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%; /* Full width for responsiveness */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.signin-container h2 {
+    text-align: center;
+    color: #f4b04f;
+    margin-bottom: 20px;
+}
+
+.signin-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signin-container label {
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.signin-container input[type="text"],
+.signin-container input[type="email"],
+.signin-container input[type="password"],
+.signin-container input[type="tel"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.signin-container button[type="submit"] {
+    background-color: #f4b04f;
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signin-container button[type="submit"]:hover {
+    background-color: #f08e33;
+}
+
+@media (max-width: 768px) {
+    .signin-container {
+        padding: 15px;
+        max-width: 90%;
+    }
+}
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+}
+
+.close:hover {
+    color: black;
+}
+
+
+.modal h2 {
+    margin-top: 0;
+    color: #f4b04f;
+}
+
+#cart-items {
+    max-height: 200px; /* Batas tinggi konten keranjang */
+    overflow-y: auto; /* Tambahkan scroll jika item keranjang banyak */
+    margin-bottom: 20px;
+}
+
+#cart-items p {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cart-items p span {
+    font-weight: bold;
+}
+
+.total-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#total-price {
+    font-size: 18px;
+    color: #f08e33;
+}
+
+#place-order-btn {
+    background-color: #f4b04f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#place-order-btn:hover {
+    background-color: #f08e33;
+}
+
+/* Animasi untuk modal muncul */
+.modal-content {
+    animation-name: animasi-muncul;
+    animation-duration: 0.4s;
+}
+
+@keyframes animasi-muncul {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+#store-details {
+    text-align: center; /* Mengatur semua konten di dalam section menjadi di tengah */
+    padding: 20px;
+}
+
+#store-details img {
+    display: block;
+    margin: 20px auto; /* Mengatur gambar agar berada di tengah secara horizontal */
+    max-width: 100%; /* Agar gambar responsif */
+    height:auto; /* Menyesuaikan tinggi gambar secara proporsional */
+    border-radius: 10px; /* Membuat sudut gambar melengkung (opsional) */
+}
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Mengatur tombol di tengah */
+    margin-top: 10px;
+}
+
+.quantity-btn {
+    background-color: #f4b04f;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px; /* Jarak antara tombol */
+}
+
+.quantity {
+    font-size: 16px;
+    margin: 0 10px; /* Jarak antara angka dan tombol */
+}
+#menu-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Mengatur gaya untuk judul menu */
+#menu-section h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Mengatur tampilan item pesanan */
+.order-items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* Gaya umum untuk kartu pesanan */
+.order-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Gaya gambar dalam kartu */
+.order-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/* Gaya untuk badge keranjang */
+.cart-badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: red;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    z-index: 1000;
+}
+
+.cart-icon i {
+    font-size: 24px;
+}
+
+.cart-badge {
+    background-color: white;
+    color: red;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+#order-summary {
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#order-summary h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.total-section p, #order-summary ul {
+    font-size: 1em;
+}

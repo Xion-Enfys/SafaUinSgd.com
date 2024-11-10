@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUSAT ES</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+</head>
+<body>
+    <header class="header">
+        <h2>PUSAT ES</h2>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Cari menu...">
+            </div>
+            
+                <div class="dropdown-content" id="menu-dropdown">
+                    <a href="#">Gorengan Bu Ade</a>
+                    <a href="#">PUSAT ES</a>
+                    <a href="#">Fotocopy</a>
+                    <a href="#">Warung Audrey Food</a>
+                </div>
+            </div>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart" id="cart-btn" onclick="openCart()"></i>
+                <span class="cart-badge" id="cart-count">0</span> <!-- Badge hanya menampilkan jumlah -->
+            </div>
+        </div>
+    </header>
+
+    <section id="store-details">
+        <img src="images/jus.jpg" alt="PUSAT ES">
+        <p>Aneka Jus Segar</p>
+        <p><strong>Penilaian: 4.8</strong> | 999+ ulasan</p>
+    </section>
+
+    <section id="menu-section">
+        <h2>Menu Jus</h2>
+        <div class="order-items">
+            <div class="order-card">
+                <img src="images/Jus Mangga.jpg" alt="Jus Mangga">
+                <div class="card-content">
+                    <h3>Jus Mangga</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Mangga', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Mangga">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Mangga', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Mangga', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus alpukat.jpg" alt="Jus Alpukat">
+                <div class="card-content">
+                    <h3>Jus Alpukat</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Alpukat', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Alpukat">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Alpukat', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Alpukat', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Strawbery.jpg" alt="Jus Strawberry">
+                <div class="card-content">
+                    <h3>Jus Strawberry</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Strawberry', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Strawberry">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Strawberry', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Strawberry', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/JusSirsak.jpg" alt="Jus Sirsak">
+                <div class="card-content">
+                    <h3>Jus Sirsak</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Sirsak', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Sirsak">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Sirsak', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Sirsak', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Jambu.jpg" alt="Jus Jambu">
+                <div class="card-content">
+                    <h3>Jus Jambu</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Jambu', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Jambu">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Jambu', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Jambu', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus jeruk.jpg" alt="Jus Jeruk">
+                <div class="card-content">
+                    <h3>Jus Jeruk</h3>
+                    <p>Rp8.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Jeruk', 8000)">-</button>
+                        <span class="quantity" id="quantity-Jus Jeruk">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Jeruk', 8000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Jeruk', 8000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Nanas.jpg" alt="Jus Nanas">
+                <div class="card-content">
+                    <h3>Jus Nanas</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Nanas', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Nanas">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Nanas', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Nanas', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Pisang.jpg" alt="Jus Pisang">
+                <div class="card-content">
+                    <h3>Jus Pisang</h3>
+                    <p>Rp8.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Pisang', 8000)">-</button>
+                        <span class="quantity" id="quantity-Jus Pisang">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Pisang', 8000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Pisang', 8000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Pir.jpg" alt="Jus Pir">
+                <div class="card-content">
+                    <h3>Jus Pir</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Pir', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Pir">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Pir', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Pir', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Lemon.jpg" alt="Jus Lemon">
+                <div class="card-content">
+                    <h3>Jus Lemon</h3>
+                    <p>Rp8.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Lemon', 8000)">-</button>
+                        <span class="quantity" id="quantity-Jus Lemon">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Lemon', 8000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Lemon', 8000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Buah Naga.jpg" alt="Jus Buah Naga">
+                <div class="card-content">
+                    <h3>Jus Buah Naga</h3>
+                    <p>Rp12.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Buah Naga', 12000)">-</button>
+                        <span class="quantity" id="quantity-Jus Buah Naga">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Buah Naga', 12000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Buah Naga', 12000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Tomat.jpg" alt="Jus Tomat">
+                <div class="card-content">
+                    <h3>Jus Tomat</h3>
+                    <p>Rp8.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Tomat', 8000)">-</button>
+                        <span class="quantity" id="quantity-Jus Tomat">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Tomat', 8000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Tomat', 8000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Wortel.jpg" alt="Jus Wortel">
+                <div class="card-content">
+                    <h3>Jus Wortel</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Wortel', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Wortel">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Wortel', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Wortel', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Apel.jpg" alt="Jus Apel">
+                <div class="card-content">
+                    <h3>Jus Apel</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Apel', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Apel">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Apel', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Apel', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Durian.jpg" alt="Jus Durian">
+                <div class="card-content">
+                    <h3>Jus Durian</h3>
+                    <p>Rp20.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Durian', 20000)">-</button>
+                        <span class="quantity" id="quantity-Jus Durian">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Durian', 20000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Durian', 20000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Kiwi.jpg" alt="Jus Kiwi">
+                <div class="card-content">
+                    <h3>Jus Kiwi</h3>
+                    <p>Rp15.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Kiwi', 15000)">-</button>
+                        <span class="quantity" id="quantity-Jus Kiwi">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Kiwi', 15000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Kiwi', 15000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Semangka.jpg" alt="Jus Semangka">
+                <div class="card-content">
+                    <h3>Jus Semangka</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Semangka', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Semangka">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Semangka', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Semangka', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Jus Melon.jpg" alt="Jus Melon">
+                <div class="card-content">
+                    <h3>Jus Melon</h3>
+                    <p>Rp10.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Jus Melon', 10000)">-</button>
+                        <span class="quantity" id="quantity-Jus Melon">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Jus Melon', 10000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Jus Melon', 10000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Smoothies Buah Naga.jpg" alt="Smoothies Buah Naga">
+                <div class="card-content">
+                    <h3>Smoothies Buah Naga</h3>
+                    <p>Rp18.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Smoothies Buah Naga', 18000)">-</button>
+                        <span class="quantity" id="quantity-Smoothies Buah Naga">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Smoothies Buah Naga', 18000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Smoothies Buah Naga', 18000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Smoothies Buah Alpukat.jpg" alt="Smoothies Buah Alpukat">
+                <div class="card-content">
+                    <h3>Smoothies Buah Alpukat</h3>
+                    <p>Rp16.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Smoothies Buah Alpukat', 16000)">-</button>
+                        <span class="quantity" id="quantity-Smoothies Buah Alpukat">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Smoothies Buah Alpukat', 16000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Smoothies Buah Alpukat', 16000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Smoothies Buah Strawberry.jpg" alt="Smoothies Buah Strawberry">
+                <div class="card-content">
+                    <h3>Smoothies Buah Strawberry</h3>
+                    <p>Rp16.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Smoothies Buah Strawberry', 16000)">-</button>
+                        <span class="quantity" id="quantity-Smoothies Buah Strawberry">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Smoothies Buah Strawberry', 16000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Smoothies Buah Strawberry', 16000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Smoothies Buah Mangga.jpg" alt="Smoothies Buah Mangga">
+                <div class="card-content">
+                    <h3>Smoothies Buah Mangga</h3>
+                    <p>Rp16.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Smoothies Buah Mangga', 16000)">-</button>
+                        <span class="quantity" id="quantity-Smoothies Buah Mangga">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Smoothies Buah Mangga', 16000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Smoothies Buah Mangga', 16000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Smoothies Buah Melon.jpg" alt="Smoothies Buah Melon">
+                <div class="card-content">
+                    <h3>Smoothies Buah Melon</h3>
+                    <p>Rp16.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Smoothies Buah Melon', 16000)">-</button>
+                        <span class="quantity" id="quantity-Smoothies Buah Melon">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Smoothies Buah Melon', 16000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Smoothies Buah Melon', 16000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Smoothies Buah Jambu Biji.jpg" alt="Smoothies Buah Jambu Biji">
+                <div class="card-content">
+                    <h3>Smoothies Buah Jambu Biji</h3>
+                    <p>Rp16.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Smoothies Buah Jambu Biji', 16000)">-</button>
+                        <span class="quantity" id="quantity-Smoothies Buah Jambu Biji">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Smoothies Buah Jambu Biji', 16000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Smoothies Buah Jambu Biji', 16000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Smoothies Pisang.jpg" alt="Smoothies Pisang">
+                <div class="card-content">
+                    <h3>Smoothies Pisang</h3>
+                    <p>Rp16.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Smoothies Pisang', 16000)">-</button>
+                        <span class="quantity" id="quantity-Smoothies Pisang">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Smoothies Pisang', 16000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Smoothies Pisang', 16000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Smoothies Buah Kiwi.jpg" alt="Smoothies Buah Kiwi">
+                <div class="card-content">
+                    <h3>Smoothies Buah Kiwi</h3>
+                    <p>Rp18.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Smoothies Buah Kiwi', 18000)">-</button>
+                        <span class="quantity" id="quantity-Smoothies Buah Kiwi">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Smoothies Buah Kiwi', 18000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Smoothies Buah Kiwi', 18000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </section>
+    
+    <!-- Modal Konfirmasi Pesanan -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Keranjang Belanja</h2>
+            <div id="cart-items">
+                <!-- Items akan diisi secara dinamis -->
+            </div>
+            <div class="total-section">
+                <p><strong>Total Pembayaran: <span id="total-price">Rp0</span></strong></p>
+            </div>
+            <a href="Struk.html"><button class="order-btn" id="place-order-btn">Buat Pesanan</button></a>
+        </div>
+    </div>
+
+    <!-- Tambahan untuk memisahkan file JS -->
+    <script src="script.js"></script>
+</body>
+</html>

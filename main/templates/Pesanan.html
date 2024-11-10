@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Pesanan</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+</head>
+<body>
+    <header class="header">
+        <h2>{{ product.toko.name }}</h2>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+        </div>         
+    </header>
+
+    <section id="order-confirmation">
+        <h2>Konfirmasi Pesanan</h2>
+        <div class="order-summary">
+            <h4>Produk di Keranjang:</h4>
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <h3>{{ item.name }}</h3>
+                    <p><strong>{{ item.toko.name }}</strong></p>
+                    <p>{{ item.description }}</p>
+                    <p>Harga: <span class="price">Rp{{ item.price }}</span></p>
+                    <p>Jumlah: {{ item.quantity }}</p>
+                </div>
+            {% empty %}
+                <p>Tidak ada item di keranjang.</p>
+            {% endfor %}
+
+            <!-- Trigger for Popup -->
+            <button type="button" onclick="showPaymentDetails()" class="confirm-order-btn">Buat Pesanan Antar</button>
+        </div>
+    </section>
+
+    <!-- Modal Popup for Payment Details -->
+    <div id="payment-details-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-xl font-semibold mb-4">Rincian Pesanan</h2>
+            <div class="popup-details">
+                {% for item in cart_items %}
+                    <p>{{ item.name }} x {{ item.quantity }}: <span>Rp{{ item.total_price }}</span></p>
+                {% endfor %}
+                <p><strong>Total Pembayaran: Rp{{ total_price }}</strong></p>
+            </div>
+            <div class="flex justify-end space-x-2 mt-4">
+                <button onclick="hidePaymentDetailsPopup()" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+                
+                <!-- Form submission is handled here after confirming -->
+                <form action="{% url 'main:pembayaran' product_id=product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Confirm Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to display the payment details popup
+        function showPaymentDetails() {
+            document.getElementById('payment-details-popup').classList.remove('hidden');
+        }
+
+        // Function to hide the payment details popup
+        function hidePaymentDetailsPopup() {
+            document.getElementById('payment-details-popup').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

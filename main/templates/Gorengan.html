@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorengan Bu Ade</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+</head>
+<body>
+    <header class="header">
+        <h2>Gorengan Bu Ade</h2>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Cari menu...">
+            </div>
+            
+                <div class="dropdown-content" id="menu-dropdown">
+                    <a href="#">Gorengan Bu Ade</a>
+                    <a href="#">PUSAT ES</a>
+                    <a href="#">Fotocopy</a>
+                    <a href="#">Warung Audrey Food</a>
+                </div>
+            </div>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart" id="cart-btn" onclick="openCart()"></i>
+                <span class="cart-badge" id="cart-count">0</span> <!-- Badge hanya menampilkan jumlah -->
+            </div>
+            
+            </div>            
+        </div>
+    </header>
+
+    <section id="store-details">
+        <img src="images/gorengan.jpg" alt="Gorengan Bu Ade">
+        <p>Aneka Gorengan Tradisional</p>
+        <p><strong>Penilaian: 4.8</strong> | 999+ ulasan</p>
+    </section>
+
+    <section id="menu-section">
+        <h2>Menu Gorengan</h2>
+        <div class="order-items">
+            <div class="order-card">
+                <img src="images/Bala-bala.jpg" alt="Bala-bala">
+                <div class="card-content">
+                    <h3>Bala-bala(Bakwan)</h3>
+                    <p>Rp1.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Bala-bala', 1000)">-</button>
+                        <span class="quantity" id="quantity-Bala-bala">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Bala-bala', 1000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Bala-bala', 1000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/Tempe.jpg" alt="Tempe Goreng">
+                <div class="card-content">
+                    <h3>Tempe Goreng</h3>
+                    <p>Rp2.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Tempe Goreng', 2000)">-</button>
+                        <span class="quantity" id="quantity-Tempe Goreng">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Tempe Goreng', 2000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Tempe Goreng', 2000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            <div class="order-card">
+                <img src="images/pisang-goreng.jpg" alt="Pisang Goreng">
+                <div class="card-content">
+                    <h3>Pisang Goreng</h3>
+                    <p>Rp3.000</p>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity('Pisang Goreng', 3000)">-</button>
+                        <span class="quantity" id="quantity-Pisang Goreng">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity('Pisang Goreng', 3000)">+</button>
+                    </div>
+                    <button class="order-btn" onclick="addToCart('Pisang Goreng', 3000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal Konfirmasi Pesanan -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Keranjang Belanja</h2>
+            <div id="cart-items">
+                <!-- Items akan diisi secara dinamis -->
+            </div>
+            <div class="total-section">
+                <p><strong>Total Pembayaran: <span id="total-price">Rp0</span></strong></p>
+            </div>
+            <a href="Struk.html"><button class="order-btn" id="place-order-btn">Buat Pesanan</button></a>
+            
+        </div>
+    </div>
+
+    <!-- Tambahan untuk memisahkan file JS -->
+    <script src="script.js"></script>
+</body>
+</html>

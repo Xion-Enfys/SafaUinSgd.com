@@ -1,0 +1,24 @@
+<!-- templates/import_csv.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import CSV</title>
+</head>
+<body>
+    <h1>Import CSV File</h1>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="csv_file" accept=".csv">
+        <button type="submit">Upload CSV</button>
+    </form>
+</body>
+</html>
